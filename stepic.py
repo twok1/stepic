@@ -1009,5 +1009,5 @@ def secondary_diag():
 
     # print_matrix(matrix)
 
-print('print hello my friend')
+print('HELLO GIT!')
 secondary_diag()
