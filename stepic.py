@@ -1009,4 +1009,5 @@ def secondary_diag():
 
     # print_matrix(matrix)
 
+print('print hello my friend')
 secondary_diag()
