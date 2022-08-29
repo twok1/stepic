@@ -1224,6 +1224,8 @@ def multiply_matrix():
 
 
 import copy
+
+
 def degree_matrix():
     n = int(input())
     matrix1 = []
@@ -1246,7 +1248,6 @@ def degree_matrix():
                         res_matrix[i][j] += matrix1[i][z] * matrix1[z][j]
                     else:
                         res_matrix[i][j] += now_matrix[i][z] * matrix1[z][j]
-
 
     for i in range(n):
         for j in range(n):
@@ -1307,10 +1308,11 @@ def snezhinka():
     for i in range(n):
         for j in range(n):
             el = '.'
-            if i == n - j - 1 or i == j or i == (n-1) / 2 or j == (n-1) / 2:
+            if i == n - j - 1 or i == j or i == (n - 1) / 2 or j == (n - 1) / 2:
                 el = '*'
             print(str(el).ljust(3), end=' ')
         print()
+
 
 # snezhinka()
 
@@ -1327,6 +1329,7 @@ def symmetric_matrix_secondary():
                 exit(print('NO'))
     print('YES')
 
+
 # symmetric_matrix_secondary()
 
 
@@ -1342,13 +1345,13 @@ def latin_squad():
     for i in zip(*matrix):
         new_matrix.append(list(i))
     for i in range(n):
-        for k in range(1, n+1):
+        for k in range(1, n + 1):
             if k not in matrix[i] or k not in new_matrix[i]:
                 exit(print('NO'))
     print('YES')
 
-# latin_squad()
 
+# latin_squad()
 
 
 def queen_chess():
@@ -1386,10 +1389,9 @@ def main_diag_plus_one():
 
     for i in range(n):
         for j in range(n):
-            matrix[i][j] = abs(j-i)
+            matrix[i][j] = abs(j - i)
             print(matrix[i][j], end=' ')
         print()
-
 
 
 # main_diag_plus_one()
@@ -1399,5 +1401,6 @@ def non_empty_tuples():
     non_empty_tuples = tuple([i for i in tuples if i])
 
     print(non_empty_tuples)
+
 
 non_empty_tuples()
