@@ -1074,4 +1074,5 @@ def primary_secondary_diag_with_treug():
             print(str(el).ljust(3), end=' ')
         print()
 
+
 primary_secondary_diag_with_treug()
