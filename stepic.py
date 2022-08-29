@@ -1009,5 +1009,5 @@ def secondary_diag():
 
     # print_matrix(matrix)
 
-print('HELLO GIT!')
-secondary_diag()
+# print('HELLO GIT!')
+# secondary_diag()
