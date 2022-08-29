@@ -945,7 +945,6 @@ def horse_chess():
             if abs(x - j) == 1 and abs(y - i) == 2:
                 matrix[i][j] = '*'
 
-
     for i in range(n):
         for j in range(n):
             print(matrix[i][j], end=' ')
@@ -961,7 +960,7 @@ def magic_square():
         matrix.append(row)
         numbers_in_matrix.extend(row)
 
-    test_list = [i for i in range(1, n**2+1)]
+    test_list = [i for i in range(1, n ** 2 + 1)]
     for i in test_list:
         if i not in numbers_in_matrix:
             exit(print('NO'))
@@ -969,11 +968,12 @@ def magic_square():
     for i in range(n):
         if sum(matrix[i]) != magic_number or sum(matrix[j][i] for j in range(n)) != magic_number:
             exit(print('NO'))
-    if sum(matrix[i][n - i - 1] for i in range(n)) != magic_number or sum(matrix[i][i] for i in range(n)) != magic_number:
+    if sum(matrix[i][n - i - 1] for i in range(n)) != magic_number or sum(
+            matrix[i][i] for i in range(n)) != magic_number:
         exit(print('NO'))
 
-
     print('YES')
+
 
 def chess_desk():
     n, m = map(int, input().split())
@@ -988,6 +988,7 @@ def chess_desk():
         for j in range(m):
             print(start_sym[j % 2], end=' ')
         print()
+
 
 def secondary_diag():
     n = int(input())
@@ -1009,6 +1010,7 @@ def secondary_diag():
 
     # print_matrix(matrix)
 
+
 def n_to_m_matrix_by_rows():
     n, m = map(int, input().split())
     matrix = []
@@ -1022,6 +1024,7 @@ def n_to_m_matrix_by_rows():
             num += 1
             print(str(matrix[i][j]).ljust(3), end=' ')
         print()
+
 
 def n_to_m_matrix_by_cols():
     n, m = map(int, input().split())
@@ -1040,6 +1043,7 @@ def n_to_m_matrix_by_cols():
             print(str(matrix[i][j]).ljust(3), end=' ')
         print()
 
+
 def primary_secondary_diag():
     n = int(input())
     matrix = []
@@ -1055,6 +1059,7 @@ def primary_secondary_diag():
                 el = 1
             print(str(el).ljust(3), end=' ')
         print()
+
 
 def primary_secondary_diag_with_treug():
     n = int(input())
@@ -1075,4 +1080,178 @@ def primary_secondary_diag_with_treug():
         print()
 
 
-primary_secondary_diag_with_treug()
+def beautiful_matrix():
+    n, m = map(int, input().split())
+    matrix = []
+    for _ in range(n):
+        matrix.append([[0] for _ in range(m)])
+    for i in range(n):
+        for j in range(m):
+            matrix[i][j] = (i + j) % m + 1
+            print(str(matrix[i][j]).ljust(3), end=' ')
+        print()
+
+
+def zmeika_matrix():
+    n, m = map(int, input().split())
+    matrix = []
+    for _ in range(n):
+        matrix.append([0 for _ in range(m)])
+    el = 1
+    for i in range(n):
+        for j in range(m):
+            matrix[i][j] = el
+            el += 1
+        if i % 2:
+            matrix[i].reverse()
+
+    for i in range(n):
+        for j in range(m):
+            print(str(matrix[i][j]), end=' ')
+        print()
+
+
+def diag_matrix_beautiful():
+    n, m = map(int, input().split())
+    matrix = []
+    for _ in range(n):
+        matrix.append([0 for _ in range(m)])
+    el = 1
+    mn = 0
+    for q in range(n * m + 1):
+        for i in range(n):
+            for j in range(m):
+                if i + j == mn:
+                    matrix[i][j] = el
+                    el += 1
+        mn += 1
+
+    for i in range(n):
+        for j in range(m):
+            print(str(matrix[i][j]), end=' ')
+        print()
+
+
+def spiral_matrix():
+    n, m = map(int, input().split())
+    matrix = []
+    for _ in range(n):
+        matrix.append([0 for _ in range(m)])
+    directions = ['r', 'd', 'l', 'u']
+    el = 1
+    i, j = 0, 0
+    direction = 'r'
+    while el <= m * n:
+        if i < n and j < m and matrix[i][j] == 0:
+            matrix[i][j] = el
+            if direction == 'r':
+                j += 1
+            elif direction == 'd':
+                i += 1
+            elif direction == 'l':
+                j -= 1
+            elif direction == 'u':
+                i -= 1
+            el += 1
+        elif direction == 'r':
+            direction = directions[(directions.index(direction) + 1) % len(directions)]
+            i += 1
+            j -= 1
+        elif direction == 'd':
+            direction = directions[(directions.index(direction) + 1) % len(directions)]
+            j -= 1
+            i -= 1
+        elif direction == 'l':
+            direction = directions[(directions.index(direction) + 1) % len(directions)]
+            i -= 1
+            j += 1
+        elif direction == 'u':
+            direction = directions[(directions.index(direction) + 1) % len(directions)]
+            j += 1
+            i += 1
+
+    for row in matrix:
+        print(*row)
+
+
+def sum_of_matrix():
+    n, m = map(int, input().split())
+    matrix1 = []
+    sum_matrix = []
+    for _ in range(n):
+        row = [int(i) for i in input().split()]
+        matrix1.append(row)
+        sum_matrix.append([0 for _ in range(m)])
+    input()
+    matrix2 = []
+    for _ in range(n):
+        row = [int(i) for i in input().split()]
+        matrix2.append(row)
+
+    for i in range(n):
+        for j in range(m):
+            sum_matrix[i][j] = matrix1[i][j] + matrix2[i][j]
+            print(sum_matrix[i][j], end=' ')
+        print()
+
+
+def multiply_matrix():
+    n, m = map(int, input().split())
+    matrix1 = []
+    res_matrix = []
+    for _ in range(n):
+        row = [int(i) for i in input().split()]
+        matrix1.append(row)
+    input()
+
+    m, k = map(int, input().split())
+    matrix2 = []
+    for _ in range(m):
+        row = [int(i) for i in input().split()]
+        matrix2.append(row)
+    for _ in range(n):
+        res_matrix.append([0 for _ in range(k)])
+
+    for i in range(n):
+        for j in range(k):
+            for z in range(m):
+                res_matrix[i][j] += matrix1[i][z] * matrix2[z][j]
+
+    for i in range(n):
+        for j in range(k):
+            print(res_matrix[i][j], end=' ')
+        print()
+
+
+import copy
+def degree_matrix():
+    n = int(input())
+    matrix1 = []
+    res_matrix = []
+    for _ in range(n):
+        row = [int(i) for i in input().split()]
+        matrix1.append(row)
+        res_matrix.append([0 for _ in range(n)])
+    m = int(input())
+
+    for step in range(m - 1):
+        now_matrix = copy.deepcopy(res_matrix)
+        res_matrix = []
+        for _ in range(n):
+            res_matrix.append([0 for _ in range(n)])
+        for i in range(n):
+            for j in range(n):
+                for z in range(n):
+                    if step == 0:
+                        res_matrix[i][j] += matrix1[i][z] * matrix1[z][j]
+                    else:
+                        res_matrix[i][j] += now_matrix[i][z] * matrix1[z][j]
+
+
+    for i in range(n):
+        for j in range(n):
+            print(res_matrix[i][j], end=' ')
+        print()
+
+
+degree_matrix()
