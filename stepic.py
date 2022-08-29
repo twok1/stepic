@@ -1254,4 +1254,142 @@ def degree_matrix():
         print()
 
 
-degree_matrix()
+def stroka_to_list():
+    list1 = input().split()
+    m = int(input())
+    res_list = [[] for _ in range(m)]
+    for i in range(len(list1)):
+        res_list[i % m].append(list1[i])
+    print(res_list)
+
+
+def max_from_treug():
+    n = int(input())
+    matrix = []
+
+    for _ in range(n):
+        row = [int(i) for i in input().split()]
+        matrix.append(row)
+
+    max_el = 0
+    for i in range(n):
+        for j in range(n):
+            if i >= n - j - 1 and matrix[i][j] > max_el:
+                max_el = matrix[i][j]
+            print(str(matrix[i][j]).ljust(3), end=' ')
+        print()
+    print(max_el)
+
+
+def transpose2():
+    n = int(input())
+    matrix = []
+    for _ in range(n):
+        row = [int(i) for i in input().split()]
+        matrix.append(row)
+
+    new_matrix = []
+    for i in zip(*matrix):
+        new_matrix.append(list(i))
+        print(' '.join(map(str, i)))
+
+
+# transpose2()
+
+def snezhinka():
+    n = int(input())
+    matrix = []
+
+    for _ in range(n):
+        row = ['.' for i in range(n)]
+        matrix.append(row)
+
+    for i in range(n):
+        for j in range(n):
+            el = '.'
+            if i == n - j - 1 or i == j or i == (n-1) / 2 or j == (n-1) / 2:
+                el = '*'
+            print(str(el).ljust(3), end=' ')
+        print()
+
+# snezhinka()
+
+def symmetric_matrix_secondary():
+    n = int(input())
+    matrix = []
+    for _ in range(n):
+        row = [int(i) for i in input().split()]
+        matrix.append(row)
+    # print(matrix)
+    for i in range(n):
+        for j in range(n):
+            if matrix[i][j] != matrix[n - j - 1][n - i - 1]:
+                exit(print('NO'))
+    print('YES')
+
+# symmetric_matrix_secondary()
+
+
+def latin_squad():
+    n = int(input())
+    matrix = []
+    for _ in range(n):
+        row = [int(i) for i in input().split()]
+        matrix.append(row)
+
+    new_matrix = []
+
+    for i in zip(*matrix):
+        new_matrix.append(list(i))
+    for i in range(n):
+        for k in range(1, n+1):
+            if k not in matrix[i] or k not in new_matrix[i]:
+                exit(print('NO'))
+    print('YES')
+
+# latin_squad()
+
+
+
+def queen_chess():
+    xy = input()
+    y = int('87654321'.index(xy[1]))
+    x = int('abcdefgh'.index(xy[0]))
+    n = 8
+    matrix = []
+    for _ in range(n):
+        matrix = [['.'] * n for _ in range(n)]
+
+    # print_matrix(matrix)
+    for i in range(n):
+        for j in range(n):
+            if abs(j - x) == abs(i - y):
+                matrix[i][j] = '*'
+            if x == j or y == i:
+                matrix[i][j] = '*'
+
+    matrix[y][x] = 'Q'
+    for i in range(n):
+        for j in range(n):
+            print(matrix[i][j], end=' ')
+        print()
+
+
+# queen_chess()
+
+def main_diag_plus_one():
+    n = int(input())
+    matrix = []
+    for _ in range(n):
+        row = [0 * n for _ in range(n)]
+        matrix.append(row)
+
+    for i in range(n):
+        for j in range(n):
+            matrix[i][j] = abs(j-i)
+            print(matrix[i][j], end=' ')
+        print()
+
+
+
+main_diag_plus_one()
