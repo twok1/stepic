@@ -1009,6 +1009,69 @@ def secondary_diag():
 
     # print_matrix(matrix)
 
-# print('HELLO GIT!')
-# secondary_diag()
-# hello
+def n_to_m_matrix_by_rows():
+    n, m = map(int, input().split())
+    matrix = []
+    for _ in range(n):
+        matrix.append([[0] for i in range(m)])
+
+    num = 1
+    for i in range(n):
+        for j in range(m):
+            matrix[i][j] = num
+            num += 1
+            print(str(matrix[i][j]).ljust(3), end=' ')
+        print()
+
+def n_to_m_matrix_by_cols():
+    n, m = map(int, input().split())
+    matrix = []
+    for _ in range(n):
+        matrix.append([[0] for i in range(m)])
+
+    num = 1
+    for i in range(m):
+        for j in range(n):
+            matrix[j][i] = num
+            num += 1
+
+    for i in range(n):
+        for j in range(m):
+            print(str(matrix[i][j]).ljust(3), end=' ')
+        print()
+
+def primary_secondary_diag():
+    n = int(input())
+    matrix = []
+
+    for _ in range(n):
+        row = [[0] for i in range(n)]
+        matrix.append(row)
+
+    for i in range(n):
+        for j in range(n):
+            el = 0
+            if i == n - j - 1 or i == j:
+                el = 1
+            print(str(el).ljust(3), end=' ')
+        print()
+
+def primary_secondary_diag_with_treug():
+    n = int(input())
+    matrix = []
+
+    for _ in range(n):
+        row = [[0] for i in range(n)]
+        matrix.append(row)
+
+    for i in range(n):
+        for j in range(n):
+            el = 0
+            if i <= n - j - 1 and i <= j:
+                el = 1
+            if i >= n - j - 1 and i >= j:
+                el = 1
+            print(str(el).ljust(3), end=' ')
+        print()
+
+primary_secondary_diag_with_treug()
