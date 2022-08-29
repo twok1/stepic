@@ -1392,4 +1392,12 @@ def main_diag_plus_one():
 
 
 
-main_diag_plus_one()
+# main_diag_plus_one()
+
+def non_empty_tuples():
+    tuples = [(), (), ('',), ('a', 'b'), (), ('a', 'b', 'c'), (1,), (), (), ('d',), ('', ''), ()]
+    non_empty_tuples = tuple([i for i in tuples if i])
+
+    print(non_empty_tuples)
+
+non_empty_tuples()
