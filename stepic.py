@@ -1469,11 +1469,15 @@ def mnozhestvo_10_klass():
     n, m, k, x, y, z, t, a = int(input()), int(input()), int(input()), int(input()), int(input()), int(input()), int(
         input()), int(input())
 
-    # 1 kniga 29
-    # 2 kniga 12
-    # not one 7
-    print(a - (m + k + n - (m + n - x - t) - (m + k + -y - t) - (n + k - z - t) - t))
-    print((m + n - x - t), (m + k + -y - t), (n + k - z - t))
+    x_nm = (m + n - x - t)
+    x_mk = (m + k - y - t)
+    x_nk = (n + k - z - t)
+    m1 = m - x_mk - x_nm - t
+    k1 = k - x_mk - x_nk - t
+    n1 = n - x_nk - x_nm - t
+    print(m1 + k1 + n1)
+    print(x_nm + x_mk + x_nk)
+    print(a - (m1 + k1 + n1 + x_nm + x_mk + x_nk + t))
 
 
 mnozhestvo_10_klass()
