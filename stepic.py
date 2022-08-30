@@ -1403,4 +1403,77 @@ def non_empty_tuples():
     print(non_empty_tuples)
 
 
-non_empty_tuples()
+# non_empty_tuples()
+
+def convert_list_to_tuple():
+    tuples = [(10, 20, 40), (40, 50, 60), (70, 80, 90), (10, 90), (1, 2, 3, 4), (5, 6, 10, 2, 1, 77)]
+    new_tuples = tuple([(*i[:-1], 100) for i in tuples])
+    print(new_tuples)
+
+
+# convert_list_to_tuple()
+
+# poet_data = ('Пушкин', 1799, 'Санкт-Петербург')
+# poet_data = tuple((*poet_data[:-1], "Москва"))
+# print(poet_data)
+
+
+def verh_parabola():
+    a = int(input())
+    b = int(input())
+    c = int(input())
+
+    x = -b / (2 * a)
+    y = (4 * a * c - b ** 2) / (4 * a)
+    print((x, y))
+
+
+# verh_parabola()
+
+def print_ranks():
+    m = int(input())
+
+    ranks = []
+    for _ in range(m):
+        i = input().split()
+        row = (i[0], int(i[1]))
+        ranks.append(row)
+        print(*row)
+    print()
+    for i in ranks:
+        if i[1] in [4, 5]:
+            print(*i)
+
+
+# print_ranks()
+def tribonachi():
+    n = int(input())
+    trib = [1, 1, 1]
+    for i in range(3, n):
+        trib.append(sum(trib[i - 3:i + 1]))
+    print(*trib[:n])
+
+
+# tribonachi()
+
+def mnozhestvo():
+    n, m, k, x, y, z = int(input()), int(input()), int(input()), int(input()), int(input()), int(input()),
+    t = n + m + k + z - x - y
+    print(t)
+
+
+# mnozhestvo()
+
+
+def mnozhestvo_10_klass():
+    n, m, k, x, y, z, t, a = int(input()), int(input()), int(input()), int(input()), int(input()), int(input()), int(
+        input()), int(input())
+
+    # 1 kniga 29
+    # 2 kniga 12
+    # not one 7
+    print(a - (m + k + n - (m + n - x - t) - (m + k + -y - t) - (n + k - z - t) - t))
+    print((m + n - x - t), (m + k + -y - t), (n + k - z - t))
+
+
+mnozhestvo_10_klass()
