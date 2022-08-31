@@ -1480,4 +1480,136 @@ def mnozhestvo_10_klass():
     print(a - (m1 + k1 + n1 + x_nm + x_mk + x_nk + t))
 
 
-mnozhestvo_10_klass()
+# mnozhestvo_10_klass()
+
+def unique_symbols():
+    length = []
+    for _ in range(int(input())):
+        length.append(len(set(input().lower())))
+    print('\n'.join(map(str, length)))
+
+# unique_symbols()
+
+def mass_unique_symbols():
+    length_str = ''
+    for _ in range(int(input())):
+        length_str += input().lower()
+    print(len(set(length_str)))
+
+# mass_unique_symbols()
+
+def unique_words():
+    del_syms = '.,;:-?!'
+    sentence = input().lower()
+    for sym in del_syms:
+        sentence = sentence.replace(sym, '')
+    print(len(set(sentence.split())))
+
+# unique_words()
+
+def unique_numbers():
+    stdin = list(map(int, input().split()))
+    was_set = set()
+    for i in stdin:
+        if i in was_set:
+            print('YES')
+        else:
+            print('NO')
+        was_set.add(i)
+
+
+# unique_numbers()
+
+def length_all_numbers():
+    num1, num2 = set(input().split()), set(input().split())
+    print(len(num1 & num2))
+
+# length_all_numbers()
+
+def length_interc_numbers():
+    num1, num2 = set([int(i) for i in input().split()]), set([int(i) for i in input().split()])
+    print(*sorted(num1 & num2))
+
+# length_interc_numbers()
+
+def length_diff_numbers():
+    num1, num2 = set([int(i) for i in input().split()]), set([int(i) for i in input().split()])
+    print(*sorted(num1 - num2))
+
+# length_diff_numbers()
+
+def intersection_numbers():
+    i = int(input())
+    itog_set = set(map(int, input()))
+    for _ in range(i-1):
+        itog_set.intersection_update(map(int, set(input())))
+    print(*sorted(itog_set))
+
+# intersection_numbers()
+
+def check_for_disjoint():
+    set1 = set(input())
+    set2 = set(input())
+    if set1.isdisjoint(set2):
+        print('NO')
+    else:
+        print('YES')
+
+# check_for_disjoint()
+
+def check_for_subset():
+    if set(input()).issuperset(set(input())):
+        print('YES')
+    else:
+        print('NO')
+
+# check_for_subset()
+def sravn_ranks():
+    st1 = set(map(int, input().split()))
+    st2 = set(map(int, input().split()))
+    st3 = set(map(int, input().split()))
+    print(*sorted((st1 & st2) - st3, reverse=True))
+
+
+# sravn_ranks()
+def sravn_ranks_no_more_that_two():
+    st1 = set(map(int, input().split()))
+    st2 = set(map(int, input().split()))
+    st3 = set(map(int, input().split()))
+    print(*sorted((st1 | st2) - st3 | (st2 | st3) - st1 | (st1 | st3) - st2))
+
+
+# sravn_ranks_no_more_that_two()
+def sravn_ranks_of_third_without_first_two():
+    st1 = set(map(int, input().split()))
+    st2 = set(map(int, input().split()))
+    st3 = set(map(int, input().split()))
+    print(*sorted(st3 - (st1 | st2)))
+
+
+# sravn_ranks_of_third_without_first_two()
+
+def ne_poluchil_nikto():
+    st1 = set(map(int, input().split()))
+    st2 = set(map(int, input().split()))
+    st3 = set(map(int, input().split()))
+    print(*sorted(set(range(11)) - st1 - st2 - st3))
+
+
+# ne_poluchil_nikto()
+
+def razbor_sentence():
+    sentence = '''My very photogenic mother died in a freak accident (picnic, lightning) when I was three, and, save for a pocket of warmth in the darkest past, nothing of her subsists within the hollows and dells of memory, over which, if you can still stand my style (I am writing under observation), the sun of my infancy had set: surely, you all know those redolent remnants of day suspended, with the midges, about some hedge in bloom or suddenly entered and traversed by the rambler, at the bottom of a hill, in the summer dusk; a furry warmth, golden midges.'''
+    for i in '.,;:-?!)(':
+        sentence = sentence.replace(i, '')
+    sentence = sentence.lower().split()
+    unique_sent = sorted(set(sentence))
+    print(*unique_sent)
+
+def razbor_sentence_2():
+    files = ['python.png', 'qwerty.py', 'stepik.png', 'beegeek.org', 'windows.pnp', 'pen.txt', 'phone.py', 'book.txT',
+             'board.pNg', 'keyBoard.jpg', 'Python.PNg', 'apple.jpeg', 'png.png', 'input.tXt', 'split.pop',
+             'solution.Py', 'stepik.org', 'kotlin.ko', 'github.git']
+    print(*sorted({i.lower() for i in files if i.lower()[i.find('.')+1:] == 'jpg'}))
+
+razbor_sentence_2()
