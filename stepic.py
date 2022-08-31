@@ -1612,4 +1612,5 @@ def razbor_sentence_2():
              'solution.Py', 'stepik.org', 'kotlin.ko', 'github.git']
     print(*sorted({i.lower() for i in files if i.lower()[i.find('.')+1:] == 'jpg'}))
 
+
 razbor_sentence_2()
