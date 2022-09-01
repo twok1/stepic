@@ -1488,6 +1488,7 @@ def unique_symbols():
         length.append(len(set(input().lower())))
     print('\n'.join(map(str, length)))
 
+
 # unique_symbols()
 
 def mass_unique_symbols():
@@ -1495,6 +1496,7 @@ def mass_unique_symbols():
     for _ in range(int(input())):
         length_str += input().lower()
     print(len(set(length_str)))
+
 
 # mass_unique_symbols()
 
@@ -1504,6 +1506,7 @@ def unique_words():
     for sym in del_syms:
         sentence = sentence.replace(sym, '')
     print(len(set(sentence.split())))
+
 
 # unique_words()
 
@@ -1524,11 +1527,13 @@ def length_all_numbers():
     num1, num2 = set(input().split()), set(input().split())
     print(len(num1 & num2))
 
+
 # length_all_numbers()
 
 def length_interc_numbers():
     num1, num2 = set([int(i) for i in input().split()]), set([int(i) for i in input().split()])
     print(*sorted(num1 & num2))
+
 
 # length_interc_numbers()
 
@@ -1536,14 +1541,16 @@ def length_diff_numbers():
     num1, num2 = set([int(i) for i in input().split()]), set([int(i) for i in input().split()])
     print(*sorted(num1 - num2))
 
+
 # length_diff_numbers()
 
 def intersection_numbers():
     i = int(input())
     itog_set = set(map(int, input()))
-    for _ in range(i-1):
+    for _ in range(i - 1):
         itog_set.intersection_update(map(int, set(input())))
     print(*sorted(itog_set))
+
 
 # intersection_numbers()
 
@@ -1555,6 +1562,7 @@ def check_for_disjoint():
     else:
         print('YES')
 
+
 # check_for_disjoint()
 
 def check_for_subset():
@@ -1562,6 +1570,7 @@ def check_for_subset():
         print('YES')
     else:
         print('NO')
+
 
 # check_for_subset()
 def sravn_ranks():
@@ -1606,10 +1615,122 @@ def razbor_sentence():
     unique_sent = sorted(set(sentence))
     print(*unique_sent)
 
+
 def razbor_sentence_2():
     files = ['python.png', 'qwerty.py', 'stepik.png', 'beegeek.org', 'windows.pnp', 'pen.txt', 'phone.py', 'book.txT',
              'board.pNg', 'keyBoard.jpg', 'Python.PNg', 'apple.jpeg', 'png.png', 'input.tXt', 'split.pop',
              'solution.Py', 'stepik.org', 'kotlin.ko', 'github.git']
-    print(*sorted({i.lower() for i in files if i.lower()[i.find('.')+1:] == 'png'}))
+    print(*sorted({i.lower() for i in files if i.lower()[i.find('.') + 1:] == 'png'}))
 
-razbor_sentence_2()
+
+# razbor_sentence_2()
+
+def home_work_school():
+    n = int(input())
+    m = int(input())
+    k = int(input())
+    p = int(input())
+    print(n - m - k + p)
+
+
+# home_work_school()
+
+def voshod_func():
+    i = input().split()
+    print(len(i) - len(set(i)))
+
+
+# voshod_func()
+
+def goroda():
+    goroda = set()
+    for _ in range(int(input())):
+        goroda.add(input())
+    if input() in goroda:
+        exit(print('REPEAT'))
+    print('OK')
+
+
+# goroda()
+def books_list():
+    n = int(input())
+    m = int(input())
+    have_books = set()
+    for _ in range(n):
+        have_books.add(input())
+    for _ in range(m):
+        if input() in have_books:
+            print('YES')
+        else:
+            print('NO')
+
+
+# books_list()
+
+def bad_day_good_day():
+    set1 = set(input().split())
+    set2 = set(input().split())
+    if set1 & set2:
+        print(*sorted(map(int, set1 & set2), reverse=True))
+    else:
+        print('BAD DAY')
+
+
+# bad_day_good_day()
+def test_candidate():
+    if set(input().split()) == set(input().split()):
+        exit(print('YES'))
+    print('NO')
+
+
+# test_candidate()
+def beegeek_inf_math():
+    m = int(input())
+    n = int(input())
+    math_set = set()
+    inf_set = set()
+    for _ in range(m):
+        math_set.add(input())
+    for _ in range(n):
+        inf_set.add(input())
+    # print(len(math_set - inf_set))
+    if math_set ^ inf_set:
+        print(len(math_set ^ inf_set))
+    else:
+        print('NO')
+
+
+# beegeek_inf_math()
+def beegeek_lesson_5():
+    m = int(input())
+    n = int(input())
+    all_set = set()
+    for _ in range(m + n):
+        all_set.add(input())
+    two_less = m + n - 2 * (m + n - len(all_set))
+    if two_less:
+        print(two_less)
+    else:
+        print('NO')
+
+
+# beegeek_lesson_5()
+
+def beegeek_was_on_all_lessons():
+    m = int(input())
+    all_lessons = set()
+    for n in range(m):
+        i = int(input())
+        one_lesson = []
+        for _ in range(i):
+            k = input()
+            if n == 0:
+                all_lessons.add(k)
+                one_lesson.append(k)
+            else:
+                one_lesson.append(k)
+        all_lessons.intersection_update(one_lesson)
+    print(*sorted(all_lessons), sep='\n')
+    pass
+
+beegeek_was_on_all_lessons()
