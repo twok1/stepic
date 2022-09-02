@@ -1961,7 +1961,7 @@ def thats_shifr():
         line = input().split(': ')
         d[line[1]] = line[0]
     was = set()
-    for letter   in word:
+    for letter in word:
         if letter not in was:
             word = word.replace(letter, d[str(word.count(letter))])
             was.add(letter)
@@ -1980,8 +1980,9 @@ def dict_generator():
 def dict_delimeters():
     numbers = [34, 10, 4, 6, 10, 23, 90, 100, 21, 35, 95, 1, 36, 38, 19, 1, 6, 87, 1000, 13456, 360]
 
-    result = {i: [k for k in range(1, i+1) if i % k == 0] for i in numbers}
+    result = {i: [k for k in range(1, i + 1) if i % k == 0] for i in numbers}
     print(result)
+
 
 # dict_delimeters()
 def gen_dict_ords():
@@ -1989,6 +1990,7 @@ def gen_dict_ords():
 
     result = {i: [ord(k) for k in i] for i in words}
     print(result)
+
 
 # gen_dict_ords()
 def gen_dict_with_remove_1():
@@ -2001,6 +2003,7 @@ def gen_dict_with_remove_1():
     result = {k: v for k, v in letters.items() if k not in remove_keys}
     print(result)
 
+
 # gen_dict_with_remove_1()
 def gen_dict_2():
     students = {'Timur': (170, 75), 'Ruslan': (180, 105), 'Soltan': (192, 68), 'Roman': (175, 70), 'Madlen': (160, 50),
@@ -2011,13 +2014,15 @@ def gen_dict_2():
     result = {k: v for k, v in students.items() if v[0] > 167 and v[1] < 75}
     print(result)
 
+
 # gen_dict_2()
 def gen_dict_3():
     tuples = [(1, 2, 3), (4, 5, 6), (7, 8, 9), (10, 11, 12), (13, 14, 15), (16, 17, 18), (19, 20, 21), (22, 23, 24),
               (25, 26, 27), (28, 29, 30), (31, 32, 33), (34, 35, 36)]
 
-    result = {k[0]:k[1:] for k in tuples}
+    result = {k[0]: k[1:] for k in tuples}
     print(result)
+
 
 # gen_dict_3()
 def gen_list():
@@ -2030,5 +2035,6 @@ def gen_list():
 
     result = [{i: {nm: wt}} for i, nm, wt in zip(student_ids, student_names, student_grades)]
     print(result)
+
 
 gen_list()
