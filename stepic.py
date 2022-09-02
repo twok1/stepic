@@ -1733,4 +1733,302 @@ def beegeek_was_on_all_lessons():
     print(*sorted(all_lessons), sep='\n')
     pass
 
-beegeek_was_on_all_lessons()
+
+# beegeek_was_on_all_lessons()
+def number_to_string():
+    conver = {'0': 'zero',
+              '1': 'one',
+              '2': 'two',
+              '3': 'three',
+              '4': 'four',
+              '5': 'five',
+              '6': 'six',
+              '7': 'seven',
+              '8': 'eight',
+              '9': 'nine'}
+    itog_num = []
+    num = input()
+    for i in num:
+        itog_num.append(conver[i])
+    print(*itog_num)
+
+
+# number_to_string()
+
+def nokia_3310_message():
+    message = input().upper()
+    d = {
+        "0": " ",
+        "1": ".,?!:",
+        "2": "ABC",
+        "3": "DEF",
+        "4": "GHI",
+        "5": "JKL",
+        "6": "MNO",
+        "7": "PQRS",
+        "8": "TUV",
+        "9": "WXYZ"
+    }
+    num_message = []
+    for letter in message:
+        for syms in d.items():
+            if letter in syms[1]:
+                num_letter = list(d.values()).index(syms[1])
+                multi_letter = syms[1].find(letter) + 1
+                num_message.append(str(num_letter) * multi_letter)
+                break
+    print(''.join(num_message))
+
+
+# nokia_3310_message()
+
+def morse_function():
+    message = input().upper()
+    morse_code = {"A": ".-", "J": ".---", "S": "...", "1": ".----", "B": "-...", "K": "-.-", "T": "-", "2": "..---",
+                  "C": "-.-.", "L": ".-..", "U": "..-", "3": "...--", "D": "-..", "M": "--", "V": "...-", "4": "....-",
+                  "E": ".", "N": "-.", "W": ".--", "5": ".....", "F": "..-.", "O": "---", "X": "-..-", "6": "-....",
+                  "G": "--.", "P": ".--.", "Y": "-.--", "7": "--...", "H": "....", "Q": "--.-", "Z": "--..",
+                  "8": "---..", "I": "..", "R": ".-.", "0": "-----", "9": "----."}
+    result_message = []
+    for letter in message:
+        result_message.append(morse_code[letter])
+    print(' '.join(result_message))
+
+
+# morse_function()
+def summary_dicts():
+    dict1 = {'a': 100, 'z': 333, 'b': 200, 'c': 300, 'd': 45, 'e': 98, 't': 76, 'q': 34, 'f': 90, 'm': 230}
+    dict2 = {'a': 300, 'b': 200, 'd': 400, 't': 777, 'c': 12, 'p': 123, 'w': 111, 'z': 666}
+    result = {}
+    for i in dict1.keys() | dict2.keys():
+        result[i] = dict1.get(i, 0) + dict2.get(i, 0)
+
+
+# summary_dicts()
+
+def words_count():
+    s = 'orange strawberry barley gooseberry apple apricot barley currant orange melon pomegranate banana banana orange barley apricot plum grapefruit banana quince strawberry barley grapefruit banana grapes melon strawberry apricot currant currant gooseberry raspberry apricot currant orange lime quince grapefruit barley banana melon pomegranate barley banana orange barley apricot plum banana quince lime grapefruit strawberry gooseberry apple barley apricot currant orange melon pomegranate banana banana orange apricot barley plum banana grapefruit banana quince currant orange melon pomegranate barley plum banana quince barley lime grapefruit pomegranate barley'.split()
+
+    result = {}
+    for word in set(s):
+        if s.count(word) in result and word < result[s.count(word)] or s.count(word) not in result:
+            result[s.count(word)] = word
+    print(result[max(result)])
+
+
+# words_count()
+def pet_dict():
+    pets = [('Hatiko', 'Parker', 'Wilson', 50),
+            ('Rusty', 'Josh', 'King', 25),
+            ('Fido', 'John', 'Smith', 28),
+            ('Butch', 'Jake', 'Smirnoff', 18),
+            ('Odi', 'Emma', 'Wright', 18),
+            ('Balto', 'Josh', 'King', 25),
+            ('Barry', 'Josh', 'King', 25),
+            ('Snape', 'Hannah', 'Taylor', 40),
+            ('Horry', 'Martha', 'Robinson', 73),
+            ('Giro', 'Alex', 'Martinez', 65),
+            ('Zooma', 'Simon', 'Nevel', 32),
+            ('Lassie', 'Josh', 'King', 25),
+            ('Chase', 'Martha', 'Robinson', 73),
+            ('Ace', 'Martha', 'Williams', 38),
+            ('Rocky', 'Simon', 'Nevel', 32)]
+
+    result = {}
+    for pet in pets:
+        result.setdefault(pet[1:], []).append(pet[0])
+
+
+# pet_dict()
+def the_most_unpopular():
+    sentence = input().lower()
+    for i in '.,!?:;-':
+        sentence = sentence.replace(i, '')
+    result = {}
+    sent_list = sentence.split()
+    for word in set(sent_list):
+        if sent_list.count(word) not in result or word < result[sent_list.count(word)]:
+            result[sent_list.count(word)] = word
+    print(result[min(result)])
+
+
+# the_most_unpopular()
+def the_most_unpopular_v2():
+    result = {}
+    sentence = [i.strip('.,!?:;-') for i in input().lower().split()]
+    for word in sentence:
+        if sentence.count(word) not in result or word < result[sentence.count(word)]:
+            result[sentence.count(word)] = word
+    print(result[min(result)])
+
+
+# the_most_unpopular_v2()
+def rename_duplicates():
+    result = {}
+    sentence = [i for i in input().split()]
+    for i in range(len(sentence)):
+        word = sentence[i]
+        result[word] = result.setdefault(word, -1) + 1
+        if result[word] > 0:
+            sentence[i] += f'_{result[word]}'
+    print(*sentence)
+    # i am i_1 r o n m a n_1
+
+
+# rename_duplicates()
+def dict_of_proger():
+    n = int(input())
+    p_dict = {}
+    for _ in range(n):
+        k, v = input().split(': ')
+        p_dict[k.lower()] = v
+    for _ in range(int(input())):
+        print(p_dict.get(input().lower(), 'Не найдено'))
+
+
+# dict_of_proger()
+def anagramm_func():
+    # d1, d2 = {}
+    in1 = input()
+    in2 = input()
+    for letter in in1:
+        if in1.count(letter) != in2.count(letter):
+            exit(print('NO'))
+    print('YES')
+
+
+def anagramm_func_v2():
+    print('YES' if sorted(input()) == sorted(input()) else 'NO')
+
+
+# anagramm_func_v2()
+def anagramm_sentences():
+    s1, s2 = input().lower(), input().lower()
+    for i in '.,!?:;- ':
+        s1, s2 = s1.replace(i, ''), s2.replace(i, '')
+    print('YES' if sorted(s1) == sorted(s2) else 'NO')
+
+
+# anagramm_sentences()
+def sinonyms():
+    d1 = {}
+    for _ in range(int(input())):
+        sin = input().split()
+        d1[sin[0]] = sin[1]
+    word = input()
+    for item in d1.items():
+        if word in item:
+            print(item[item.index(word) - 1])
+
+
+def sinonyms_v2():
+    d1 = {}
+    for _ in range(int(input())):
+        a, b = input().split()
+        d1[a], d1[b] = b, a
+    print(d1[input()])
+
+
+# sinonyms_v2()
+def countries_cities():
+    d = {}
+    for _ in range(int(input())):
+        words = input().split()
+        for word in words[1:]:
+            d[word] = words[0]
+    for _ in range(int(input())):
+        print(d[input()])
+
+
+# countries_cities()
+def telephone_book():
+    tb = {}
+    for _ in range(int(input())):
+        pos = input().split()
+        tb.setdefault(pos[1].lower(), []).append(pos[0])
+    for _ in range(int(input())):
+        print(*tb.get(input().lower(), ('абонент не найден',)))
+
+
+# telephone_book()
+def thats_shifr():
+    word = input()
+    d1 = {}
+    for letter in set(word):
+        d1[str(word.count(letter))] = letter
+    d = {}
+    for _ in range(int(input())):
+        line = input().split(': ')
+        d[line[1]] = line[0]
+    was = set()
+    for letter   in word:
+        if letter not in was:
+            word = word.replace(letter, d[str(word.count(letter))])
+            was.add(letter)
+    print(word)
+
+
+# thats_shifr()
+def dict_generator():
+    s = '1:men 2:kind 90:number 0:sun 34:book 56:mountain 87:wood 54:car 3:island 88:power 7:box 17:star 101:ice'
+
+    result = {int(k): v for k, v in [l.split(':') for l in s.split()]}
+
+
+# dict_generator()
+
+def dict_delimeters():
+    numbers = [34, 10, 4, 6, 10, 23, 90, 100, 21, 35, 95, 1, 36, 38, 19, 1, 6, 87, 1000, 13456, 360]
+
+    result = {i: [k for k in range(1, i+1) if i % k == 0] for i in numbers}
+    print(result)
+
+# dict_delimeters()
+def gen_dict_ords():
+    words = ['hello', 'bye', 'yes', 'no', 'python', 'apple', 'maybe', 'stepik', 'beegeek']
+
+    result = {i: [ord(k) for k in i] for i in words}
+    print(result)
+
+# gen_dict_ords()
+def gen_dict_with_remove_1():
+    letters = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H', 8: 'I', 9: 'J', 10: 'K', 11: 'L',
+               12: 'M', 13: 'N', 14: 'O', 15: 'P', 16: 'Q', 17: 'R', 18: 'S', 19: 'T', 20: 'U', 21: 'V', 22: 'W',
+               23: 'X', 24: 'Y', 26: 'Z'}
+
+    remove_keys = [1, 5, 7, 12, 17, 19, 21, 24]
+
+    result = {k: v for k, v in letters.items() if k not in remove_keys}
+    print(result)
+
+# gen_dict_with_remove_1()
+def gen_dict_2():
+    students = {'Timur': (170, 75), 'Ruslan': (180, 105), 'Soltan': (192, 68), 'Roman': (175, 70), 'Madlen': (160, 50),
+                'Stefani': (165, 70), 'Tom': (190, 90), 'Jerry': (180, 87), 'Anna': (172, 67), 'Scott': (168, 78),
+                'John': (186, 79), 'Alex': (195, 120), 'Max': (200, 110), 'Barak': (180, 89), 'Donald': (170, 80),
+                'Rustam': (186, 100), 'Alice': (159, 59), 'Rita': (170, 80), 'Mary': (175, 69), 'Jane': (190, 80)}
+
+    result = {k: v for k, v in students.items() if v[0] > 167 and v[1] < 75}
+    print(result)
+
+# gen_dict_2()
+def gen_dict_3():
+    tuples = [(1, 2, 3), (4, 5, 6), (7, 8, 9), (10, 11, 12), (13, 14, 15), (16, 17, 18), (19, 20, 21), (22, 23, 24),
+              (25, 26, 27), (28, 29, 30), (31, 32, 33), (34, 35, 36)]
+
+    result = {k[0]:k[1:] for k in tuples}
+    print(result)
+
+# gen_dict_3()
+def gen_list():
+    student_ids = ['S001', 'S002', 'S003', 'S004', 'S005', 'S006', 'S007', 'S008', 'S009', 'S010', 'S011', 'S012',
+                   'S013']
+    student_names = ['Camila Rodriguez', 'Juan Cruz', 'Dan Richards', 'Sam Boyle', 'Batista Cesare', 'Francesco Totti',
+                     'Khalid Hussain', 'Ethan Hawke', 'David Bowman', 'James Milner', 'Michael Owen', 'Gary Oldman',
+                     'Tom Hardy']
+    student_grades = [86, 98, 89, 92, 45, 67, 89, 90, 100, 98, 10, 96, 93]
+
+    result = [{i: {nm: wt}} for i, nm, wt in zip(student_ids, student_names, student_grades)]
+    print(result)
+
+gen_list()
