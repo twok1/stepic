@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import random
+
 import numpy
 import copy
 
@@ -1398,7 +1400,7 @@ def main_diag_plus_one():
 
 def non_empty_tuples():
     tuples = [(), (), ('',), ('a', 'b'), (), ('a', 'b', 'c'), (1,), (), (), ('d',), ('', ''), ()]
-    non_empty_tuples = tuple([i for i in tuples if i])
+    non_empty_tuples = [i for i in tuples if i]
 
     print(non_empty_tuples)
 
@@ -2037,4 +2039,33 @@ def gen_list():
     print(result)
 
 
-gen_list()
+# gen_list()
+def bingo_game():
+    matrix = []
+    was_dict = {0}
+    for i in random.sample(range(1, 76), k=25):
+        matrix.append(i)
+
+    matrix[12] = 0
+    for i in range(len(matrix)):
+        print(str(matrix[i]).ljust(3), end=' ')
+        if i in [4, 9, 14, 19, 24]:
+            print()
+        i += 1
+
+
+# bingo_game()
+def secret_santa():
+    m = int(input())
+    names = []
+    for _ in range(m):
+        names.append(input())
+    friend_names = names.copy()
+    for i in names:
+        print(i, end=' - ')
+        friend_names.remove(i)
+        name = random.choice(friend_names)
+        print(name)
+
+
+secret_santa()
