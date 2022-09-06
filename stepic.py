@@ -2839,4 +2839,9 @@ def less_15_9_6():
 
 # less_15_9_6()
 def less_15_9_7():
-    pass
+    stud = []
+    for i in range(int(input())):
+        stud.append(any([1 if 5 % int(input().split()[1]) == 0 else 0 for _ in range(int(input()))]))
+    print('YES' if all(stud) else 'NO')
+
+less_15_9_7()
