@@ -2055,6 +2055,9 @@ def bingo_game():
 
 
 # bingo_game()
+import random
+
+
 def secret_santa():
     m = int(input())
     names = []
@@ -2063,8 +2066,10 @@ def secret_santa():
     friend_names = names.copy()
     for i in names:
         print(i, end=' - ')
-        friend_names.remove(i)
         name = random.choice(friend_names)
+        while name == i:
+            name = random.choice(friend_names)
+        friend_names.remove(name)
         print(name)
 
 
@@ -2075,6 +2080,7 @@ def dict_update():
                'C8': [3, 14, 15, 26, 48], 'C9': [2, 7, 18, 28, 18, 28]}
     for i in my_dict:
         my_dict[i] = [k for k in my_dict[i] if k <= 20]
+
 
 # dict_update()
 def mail_domen():
@@ -2091,14 +2097,16 @@ def mail_domen():
     for mail in sorted(form_mails):
         print(mail)
 
+
 # mail_domen()
 def dna_rna():
     dna = input()
-    dna_to_rna = {'G':'C', 'C':'G', 'T':'A', 'A':'U'}
+    dna_to_rna = {'G': 'C', 'C': 'G', 'T': 'A', 'A': 'U'}
     rna = ''
     for letter in dna:
         rna += dna_to_rna[letter]
     print(rna)
+
 
 # dna_rna()
 def count_of_inputs():
@@ -2110,6 +2118,7 @@ def count_of_inputs():
         result_counts[word] = result_counts.setdefault(word, 0) + 1
         count_sentence.append(result_counts[word])
     print(*count_sentence)
+
 
 # count_of_inputs()
 def scrabble():
@@ -2135,9 +2144,10 @@ def scrabble():
 def build_query_string(params):
     return '&'.join([f'{k}={params[k]}' for k in sorted(params)])
 
+
 # print(build_query_string({'sport': 'hockey', 'game': 2, 'time': 17}))
 
-def merge(values):      # values - это список словарей
+def merge(values):  # values - это список словарей
     res_dict = {}
     for d in values:
         for k in d:
@@ -2175,10 +2185,13 @@ def internet_shop():
         for position in sorted(shop_dict[name]):
             print(position, shop_dict[name][position])
 
+
 # internet_shop()
 
 from string import *
 import random
+
+
 def generate_password():
     LETTER = ''.join((set(ascii_letters) | set(digits)) - set('lI1oO0'))
     n, m = int(input()), int(input())
@@ -2186,13 +2199,16 @@ def generate_password():
         password = ''.join(random.choices(LETTER, k=m))
         print(password)
 
+
 # generate_password()
 from string import *
 import random
+
+
 def generate_hard_password():
     letter_dict = {'EN': {x for x in ascii_uppercase if x not in 'OI'},
-              'en': {x for x in ascii_lowercase if x not in 'ol'},
-              'dig': {x for x in digits if x not in '01'}}
+                   'en': {x for x in ascii_lowercase if x not in 'ol'},
+                   'dig': {x for x in digits if x not in '01'}}
     letter_all = ''.join((set(ascii_letters) | set(digits)) - set('lI1oO0'))
     n, m = int(input()), int(input())
     for _ in range(n):
@@ -2200,15 +2216,18 @@ def generate_hard_password():
         enough = False
         while not enough:
             password = random.choices(letter_all, k=m)
-            if bool(set(password) & letter_dict['EN']) & bool(set(password) & letter_dict['en']) & bool(set(password) & letter_dict['dig']):
+            if bool(set(password) & letter_dict['EN']) & bool(set(password) & letter_dict['en']) & bool(
+                    set(password) & letter_dict['dig']):
                 enough = True
         print(''.join(password))
+
 
 # generate_hard_password()
 
 import random
-def method_monte_carlo(n=10):
 
+
+def method_monte_carlo(n=10):
     # n = 100000
     k = 0
     s0 = 1
@@ -2225,6 +2244,8 @@ def method_monte_carlo(n=10):
 # method_monte_carlo(50000000)
 
 import random
+
+
 def method_monte_carlo_2():
     n = 10 ** 6  # количество испытаний
     k = 0
@@ -2233,17 +2254,19 @@ def method_monte_carlo_2():
         x = random.uniform(-2, 2)  # случайное число с плавающей точкой от 0 до 1
         y = random.uniform(-2, 2)  # случайное число с плавающей точкой от 0 до 1
 
-        if x**3 + y**4 + 2 >= 0 and 3 * x + y**2 <= 2:  # если попадает в нужную область
+        if x ** 3 + y ** 4 + 2 >= 0 and 3 * x + y ** 2 <= 2:  # если попадает в нужную область
             k += 1
 
     print((k / n) * s0)
+
 
 # method_monte_carlo_2()
 
 
 import random
-def method_monte_carlo_for_pi():
 
+
+def method_monte_carlo_for_pi():
     n = 10 ** 6  # количество испытаний
     k = 0
     r = 1
@@ -2252,24 +2275,30 @@ def method_monte_carlo_for_pi():
         x = random.uniform(-1, 1)  # случайное число с плавающей точкой от 0 до 1
         y = random.uniform(-1, 1)  # случайное число с плавающей точкой от 0 до 1
 
-        if x**2 + y**2 <= 1:  # если попадает в нужную область
+        if x ** 2 + y ** 2 <= 1:  # если попадает в нужную область
             k += 1
 
     # print(s0 = pi * r**2)
 
-    pi = (k/n)*s0 / r**2
+    pi = (k / n) * s0 / r ** 2
     print(pi)
 
 
 # method_monte_carlo_for_pi()
 from decimal import *
+
+
 def func_decimal():
-    s = list(map(Decimal, '9.73 8.84 8.92 9.60 9.32 8.97 8.53 1.26 6.62 9.85 1.85 1.80 0.83 6.75 9.74 9.11 9.14 5.03 5.03 1.34 3.52 8.09 7.89 8.24 8.23 5.22 0.30 2.59 1.25 6.24 2.14 7.54 5.72 2.75 2.32 2.69 9.32 8.11 4.53 0.80 0.08 9.36 5.22 4.08 3.86 5.56 1.43 8.36 6.29 5.13'.split()))
+    s = list(map(Decimal,
+                 '9.73 8.84 8.92 9.60 9.32 8.97 8.53 1.26 6.62 9.85 1.85 1.80 0.83 6.75 9.74 9.11 9.14 5.03 5.03 1.34 3.52 8.09 7.89 8.24 8.23 5.22 0.30 2.59 1.25 6.24 2.14 7.54 5.72 2.75 2.32 2.69 9.32 8.11 4.53 0.80 0.08 9.36 5.22 4.08 3.86 5.56 1.43 8.36 6.29 5.13'.split()))
     print(sum(s))
     print(*map(str, sorted(s)[-5:][::-1]))
 
+
 # func_decimal()
 from decimal import *
+
+
 def func_decimal_2():
     num = Decimal(input())
     print(num.as_tuple())
@@ -2281,36 +2310,53 @@ def func_decimal_2():
 
 # func_decimal_2()
 from decimal import *
+
+
 def result_of_formula():
     d = Decimal(input())
     result = Decimal.exp(d) + Decimal.ln(d) + Decimal.log10(d) + Decimal.sqrt(d)
     print(result)
 
+
 # result_of_formula()
 
 from fractions import Fraction
+
+
 def func_fractions():
-    numbers = ['6.34', '4.08', '3.04', '7.49', '4.45', '5.39', '7.82', '2.76', '0.71', '1.97', '2.54', '3.67', '0.14', '4.29', '1.84', '4.07', '7.26', '9.37', '8.11', '4.30', '7.16', '2.46', '1.27', '0.29', '5.12', '4.02', '6.95', '1.62', '2.26', '0.45', '6.91', '7.39', '0.52', '1.88', '8.38', '0.75', '0.32', '4.81', '3.31', '4.63', '7.84', '2.25', '1.10', '3.35', '2.05', '7.87', '2.40', '1.20', '2.58', '2.46']
+    numbers = ['6.34', '4.08', '3.04', '7.49', '4.45', '5.39', '7.82', '2.76', '0.71', '1.97', '2.54', '3.67', '0.14',
+               '4.29', '1.84', '4.07', '7.26', '9.37', '8.11', '4.30', '7.16', '2.46', '1.27', '0.29', '5.12', '4.02',
+               '6.95', '1.62', '2.26', '0.45', '6.91', '7.39', '0.52', '1.88', '8.38', '0.75', '0.32', '4.81', '3.31',
+               '4.63', '7.84', '2.25', '1.10', '3.35', '2.05', '7.87', '2.40', '1.20', '2.58', '2.46']
     for num in numbers:
         print(num, Fraction(num), sep=' = ')
 
 
 # func_fractions()
 from fractions import Fraction
+
+
 def func_fractions_2():
-    s = list(map(Fraction, '0.78 4.3 9.6 3.88 7.08 5.88 0.23 4.65 2.79 0.90 4.23 2.15 3.24 8.57 0.10 8.57 1.49 5.64 3.63 8.36 1.56 6.67 ' \
-        '1.46 5.26 4.83 7.13 1.22 1.02 7.82 9.97 5.40 9.79 9.82 2.78 2.96 0.07 1.72 7.24 7.84 9.23 1.71 6.24 5.78 ' \
-        '5.37 0.03 9.60 8.86 2.73 5.83 6.50 0.123 0.00021'.split()))
+    s = list(map(Fraction,
+                 '0.78 4.3 9.6 3.88 7.08 5.88 0.23 4.65 2.79 0.90 4.23 2.15 3.24 8.57 0.10 8.57 1.49 5.64 3.63 8.36 1.56 6.67 ' \
+                 '1.46 5.26 4.83 7.13 1.22 1.02 7.82 9.97 5.40 9.79 9.82 2.78 2.96 0.07 1.72 7.24 7.84 9.23 1.71 6.24 5.78 ' \
+                 '5.37 0.03 9.60 8.86 2.73 5.83 6.50 0.123 0.00021'.split()))
     print(min(s) + max(s))
+
 
 # func_fractions_2()
 from fractions import Fraction
+
+
 def func_fractions_3():
     m, n = int(input()), int(input())
-    print(Fraction(m,n))
+    print(Fraction(m, n))
+
 
 # func_fractions_3()
 from fractions import Fraction
+
+
 def func_fractions_4():
     num1 = input()
     num2 = input()
@@ -2321,35 +2367,46 @@ def func_fractions_4():
     print(f'{num1} * {num2} = {f_num1 * f_num2}')
     print(f'{num1} / {num2} = {f_num1 / f_num2}')
 
+
 # func_fractions_4()
 from fractions import Fraction
+
+
 def func_fractions_5():
     n = int(input())
     result = Fraction(0)
-    for i in range(1, n+1):
-        result += Fraction(1, i**2)
+    for i in range(1, n + 1):
+        result += Fraction(1, i ** 2)
     print(result)
+
 
 # func_fractions_5()
 from fractions import Fraction
 from math import factorial
+
+
 def func_fractions_6():
     n = int(input())
-    print(sum([Fraction(1, factorial(i)) for i in range(1, n+1)]))
+    print(sum([Fraction(1, factorial(i)) for i in range(1, n + 1)]))
 
 
 # func_fractions_6()
 from math import gcd
 from fractions import Fraction
+
+
 def super_fraction():
     n = int(input())
     for i in range(n // 2, 0, -1):
         if gcd(i, n - i) == 1:
             exit(print(Fraction(i, n - i)))
 
+
 # super_fraction()
 from math import gcd
 from fractions import Fraction
+
+
 def super_fraction_2():
     n = int(input())
     i = 1
@@ -2362,6 +2419,7 @@ def super_fraction_2():
             i = 1
             n -= 1
     print(*sorted(res), sep='\n')
+
 
 # super_fraction_2()
 
@@ -2382,12 +2440,14 @@ def complex_func_2():
             result = num
     print(result, abs(result), sep='\n')
 
+
 # complex_func_2()
 def complex_func_3():
     n = int(input())
     z1 = complex(input())
     z2 = complex(input())
-    print(z1**n + z2**n + z1.conjugate()**n + z2.conjugate()**(n+1))
+    print(z1 ** n + z2 ** n + z1.conjugate() ** n + z2.conjugate() ** (n + 1))
+
 
 # complex_func_3()
 def matrix(n=1, m=None, value=0):
@@ -2402,20 +2462,132 @@ def matrix(n=1, m=None, value=0):
 
 # print(matrix(3,4,9))
 def mean(*args):
-    #[i for i in args if str(i).isdigit]
+    # [i for i in args if str(i).isdigit]
     l = [i for i in args if type(i) is float or type(i) is int]
     if len(l) == 0:
         return 0.0
-    return sum(l)/len(l)
+    return sum(l) / len(l)
 
 
-print(mean())
-print(mean(7))
-print(mean(1.5, True, ['stepik'], 'beegeek', 2.5, (1, 2)))
-print(mean(True, ['stepik'], 'beegeek', (1, 2)))
-print(mean(-1, 2, 3, 10, ('5')))
-print(mean(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+# print(mean())
+# print(mean(7))
+# print(mean(1.5, True, ['stepik'], 'beegeek', 2.5, (1, 2)))
+# print(mean(True, ['stepik'], 'beegeek', (1, 2)))
+# print(mean(-1, 2, 3, 10, ('5')))
+# print(mean(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
 
 
+def sorting_meth():
+    i = int(input())
+
+    def mean(point):
+        return point[i - 1]
+
+    athletes = [('Дима', 10, 130, 35), ('Тимур', 11, 135, 39), ('Руслан', 9, 140, 33), ('Рустам', 10, 128, 30),
+                ('Амир', 16, 170, 70), ('Рома', 16, 188, 100), ('Матвей', 17, 168, 68), ('Петя', 15, 190, 90)]
+
+    for p in athletes:
+        print(*p)
 
 
+# sorting_meth()
+import math
+
+
+def double(x):
+    return x ** 2
+
+
+def cube(x):
+    return x ** 3
+
+
+def square(x):
+    return math.sqrt(x)
+
+
+def absolute_val(x):
+    return abs(x)
+
+
+def sinus_func(x):
+    return math.sin(x)
+
+
+def main_function_of_many():
+    n = int(input())
+    func = input()
+    funcs = {'квадрат': double, 'куб': cube, 'корень': square, 'модуль': absolute_val, 'синус': sinus_func}
+    print(funcs[func](n))
+
+
+# main_function_of_many()
+
+def non_decreasing_sum_nums():
+    line = input().split()
+    print(*sorted(line, key=non_decreasing_sum_nums_mean))
+
+
+def non_decreasing_sum_nums_mean(point):
+    return sum(map(int, list(point)))
+
+
+# non_decreasing_sum_nums()
+
+
+def non_decreasing_2():
+    line = input().split()
+    print(*sorted(line, key=non_decreasing_mean_2))
+
+
+def non_decreasing_mean_2(point):
+    return (sum(map(int, list(point))), int(point))
+
+
+# non_decreasing_2()
+n = 2
+
+
+def map(function, items):
+    result = []
+    for item in items:
+        result.append(function(item, n))
+    return result
+
+
+# numbers = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.12013, 23.22222, 90.09873, 45.45, 314.1528, 2.71828,
+#            1.41546]
+# print(*map(round, numbers))
+
+def map(function, items):
+    result = []
+    for item in items:
+        result.append(function(item))
+    return result
+
+
+def filter(function, items):
+    result = []
+    for item in items:
+        if function(item):
+            result.append(item)
+    return result
+
+
+def lenny(num):
+    return len(str(num)) == 3 and num % 5 == 2
+
+
+def cubes(num):
+    return num ** 3
+
+
+numbers = [1014, 1321, 675, 1215, 56, 1386, 1385, 431, 1058, 486, 1434, 696, 1016, 1084, 424, 1189, 475, 95, 1434, 1462,
+           815, 776, 657, 1225, 912, 537, 1478, 1176, 544, 488, 668, 944, 207, 266, 1309, 1027, 257, 1374, 1289, 1155,
+           230, 866, 708, 144, 1434, 1163, 345, 394, 560, 338, 232, 182, 1438, 1127, 928, 1309, 98, 530, 1013, 898, 669,
+           105, 130, 1363, 947, 72, 1278, 166, 904, 349, 831, 1207, 1496, 370, 725, 926, 175, 959, 1282, 336, 1268, 351,
+           1439, 186, 273, 1008, 231, 138, 142, 433, 456, 1268, 1018, 1274, 387, 120, 340, 963, 832, 1127]
+
+numbers = filter(lenny, numbers)
+numbers = map(cubes, numbers)
+pass
