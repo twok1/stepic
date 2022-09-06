@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
+import math
 import random
+from decimal import Decimal
+from fractions import Fraction
+from string import ascii_letters, digits, ascii_uppercase, ascii_lowercase
 
 import numpy
-import copy
+from numpy.ma import copy
 
 
 def card_calc():
@@ -181,14 +185,10 @@ def anagrams():
 
 def jolly_jumper():
     # put your python code here
+    l_1 = list(map(int, input().split()))
 
-    l = input()
-    # l = '4'
-    l = list(map(int, l.split()))
-
-    # for i in range(len(l) - 1):
-    n = len(l) - 1
-    somelist = [l[i] - l[i + 1] for i in range(n)]
+    n = len(l_1) - 1
+    somelist = [l_1[i] - l_1[i + 1] for i in range(n)]
     if (len(somelist) > 0 and len(somelist) == len(sorted(somelist)) and min(somelist) > -1 * n and max(
             somelist) <= n) or len(somelist) == 0:
         print('Jolly')
@@ -233,7 +233,6 @@ def game_of_life():
 .XXX.
 ....X"""
     n, m = map(int, pole.split())
-    ish_mines = life_or_not
     life_or_not = life_or_not.replace('.', '0').replace('X', '1').split('\n')
     for i in range(len(life_or_not)):
         life_or_not[i] = list(map(int, list(life_or_not[i])))
@@ -308,7 +307,7 @@ def continued_fraction():
 
 
 def transpose():
-    n, m = map(int, '2 3'.split())
+    n, m = map(int, input().split())
     lines = """1 2 3
 4 5 6"""
     # matrix = list(map(list, lines.splitlines()))
@@ -326,7 +325,7 @@ def transpose():
 
 def hanoy():
     n = int(input())
-    t1, buf, t2 = 1, 2, 3
+
     moves = []
     m1, m2, m3 = [], [], []
     for i in range(n, 0, -1):
@@ -528,8 +527,7 @@ def sdvig_stroki():
 # sdvig_stroki()
 
 def podschet_el():
-    stroka = '1 1 1 2 2 2 2 3 3 3'
-    print(len(set('1 1 1 2 2 2 2 3 3 3'.split())))
+    print(len(set(input().split())))
 
 
 # podschet_el()
@@ -541,7 +539,7 @@ def proverka_na_mnozhitel():
 17
 35'''.splitlines()))
     summa = 999
-    for i in range(len(nums)):
+    for i in range(n):
         for k in range(len(nums)):
             if i != k and nums[i] * nums[k] == summa:
                 return "ДА"
@@ -556,8 +554,8 @@ def kamen_nozh_bum():
     second = input()
     if first == second:
         exit(print('ничья'))
-    round = f"{first}-{second}"
-    if round in timur:
+    what_a_round = f"{first}-{second}"
+    if what_a_round in timur:
         exit(print('Тимур'))
     print("Руслан")
 
@@ -587,9 +585,9 @@ def orel_reshka():
 # orel_reshka()
 
 def holodos():
-    l = int(input())
+    l_1 = int(input())
     shifr = 'anton'
-    holod_nums = list(range(1, l + 1))
+    holod_nums = list(range(1, l_1 + 1))
     stroki = """0000a0000n00t00000o000000n
 gylfole
 richard
@@ -769,7 +767,7 @@ def max_treyg_matrix():
 
 # max_treyg_matrix()
 
-def max_treyg_matrix():
+def max_treyg_matrix_2():
     n = int(input())
     matrix = []
     for _ in range(n):
@@ -779,13 +777,13 @@ def max_treyg_matrix():
     need_max = []
     for i in range(n):
         for j in range(n):
-            if i >= j and i <= n - j - 1 or i <= j and i >= n - j - 1:
+            if j <= i <= n - j - 1 or j >= i >= n - j - 1:
                 need_max.append(matrix[i][j])
 
     print(max(need_max))
 
 
-# max_treyg_matrix()
+# max_treyg_matrix_2()
 
 def four_chetvert():
     n = int(input())
@@ -837,12 +835,12 @@ def max_index_matrix():
         row = [int(i) for i in input().split()]
         matrix.append(row)
     # print(matrix)
-    max, max_i, max_j = matrix[0][0], 0, 0
+    max_val, max_i, max_j = matrix[0][0], 0, 0
     for i in range(n):
         for j in range(m):
             el = matrix[i][j]
-            if el > max:
-                max_i, max_j, max = i, j, el
+            if el > max_val:
+                max_i, max_j, max_val = i, j, el
 
     print(max_i, max_j)
 
@@ -883,7 +881,6 @@ def change_main_sec_diag():
         row = [int(i) for i in input().split()]
         matrix.append(row)
     for i in range(n):
-        prom = matrix[i][i]
         matrix[i][i], matrix[n - i - 1][i] = matrix[n - i - 1][i], matrix[i][i]
 
     for i in range(n):
@@ -981,7 +978,7 @@ def chess_desk():
     n, m = map(int, input().split())
     matrix = []
     for _ in range(n):
-        matrix.append([['.'] for i in range(m)])
+        matrix.append([['.'] for _ in range(m)])
 
     for i in range(n):
         start_sym = '*.'
@@ -997,7 +994,7 @@ def secondary_diag():
     matrix = []
 
     for _ in range(n):
-        row = [[0] for i in range(n)]
+        row = [[0] for _ in range(n)]
         matrix.append(row)
 
     for i in range(n):
@@ -1017,7 +1014,7 @@ def n_to_m_matrix_by_rows():
     n, m = map(int, input().split())
     matrix = []
     for _ in range(n):
-        matrix.append([[0] for i in range(m)])
+        matrix.append([[0] for _ in range(m)])
 
     num = 1
     for i in range(n):
@@ -1032,7 +1029,7 @@ def n_to_m_matrix_by_cols():
     n, m = map(int, input().split())
     matrix = []
     for _ in range(n):
-        matrix.append([[0] for i in range(m)])
+        matrix.append([[0] for _ in range(m)])
 
     num = 1
     for i in range(m):
@@ -1051,7 +1048,7 @@ def primary_secondary_diag():
     matrix = []
 
     for _ in range(n):
-        row = [[0] for i in range(n)]
+        row = [[0] for _ in range(n)]
         matrix.append(row)
 
     for i in range(n):
@@ -1068,7 +1065,7 @@ def primary_secondary_diag_with_treug():
     matrix = []
 
     for _ in range(n):
-        row = [[0] for i in range(n)]
+        row = [[0] for _ in range(n)]
         matrix.append(row)
 
     for i in range(n):
@@ -1134,7 +1131,7 @@ def diag_matrix_beautiful():
         print()
 
 
-def spiral_matrix():
+def spiral_matrix_2():
     n, m = map(int, input().split())
     matrix = []
     for _ in range(n):
@@ -1225,9 +1222,6 @@ def multiply_matrix():
         print()
 
 
-import copy
-
-
 def degree_matrix():
     n = int(input())
     matrix1 = []
@@ -1304,7 +1298,7 @@ def snezhinka():
     matrix = []
 
     for _ in range(n):
-        row = ['.' for i in range(n)]
+        row = ['.' for _ in range(n)]
         matrix.append(row)
 
     for i in range(n):
@@ -1610,7 +1604,12 @@ def ne_poluchil_nikto():
 # ne_poluchil_nikto()
 
 def razbor_sentence():
-    sentence = '''My very photogenic mother died in a freak accident (picnic, lightning) when I was three, and, save for a pocket of warmth in the darkest past, nothing of her subsists within the hollows and dells of memory, over which, if you can still stand my style (I am writing under observation), the sun of my infancy had set: surely, you all know those redolent remnants of day suspended, with the midges, about some hedge in bloom or suddenly entered and traversed by the rambler, at the bottom of a hill, in the summer dusk; a furry warmth, golden midges.'''
+    sentence = '''My very photogenic mother died in a freak accident (picnic, lightning) when I was three, and, 
+    save for a pocket of warmth in the darkest past, nothing of her subsists within the hollows and dells of memory, 
+    over which, if you can still stand my style (I am writing under observation), the sun of my infancy had set: 
+    surely, you all know those redolent remnants of day suspended, with the midges, about some hedge in bloom or 
+    suddenly entered and traversed by the rambler, at the bottom of a hill, in the summer dusk; a furry warmth, 
+    golden midges. '''
     for i in '.,;:-?!)(':
         sentence = sentence.replace(i, '')
     sentence = sentence.lower().split()
@@ -1809,7 +1808,13 @@ def summary_dicts():
 # summary_dicts()
 
 def words_count():
-    s = 'orange strawberry barley gooseberry apple apricot barley currant orange melon pomegranate banana banana orange barley apricot plum grapefruit banana quince strawberry barley grapefruit banana grapes melon strawberry apricot currant currant gooseberry raspberry apricot currant orange lime quince grapefruit barley banana melon pomegranate barley banana orange barley apricot plum banana quince lime grapefruit strawberry gooseberry apple barley apricot currant orange melon pomegranate banana banana orange apricot barley plum banana grapefruit banana quince currant orange melon pomegranate barley plum banana quince barley lime grapefruit pomegranate barley'.split()
+    s = 'orange strawberry barley gooseberry apple apricot barley currant orange melon pomegranate banana banana ' \
+        'orange barley apricot plum grapefruit banana quince strawberry barley grapefruit banana grapes melon ' \
+        'strawberry apricot currant currant gooseberry raspberry apricot currant orange lime quince grapefruit barley ' \
+        'banana melon pomegranate barley banana orange barley apricot plum banana quince lime grapefruit strawberry ' \
+        'gooseberry apple barley apricot currant orange melon pomegranate banana banana orange apricot barley plum ' \
+        'banana grapefruit banana quince currant orange melon pomegranate barley plum banana quince barley lime ' \
+        'grapefruit pomegranate barley'.split()
 
     result = {}
     for word in set(s):
@@ -1974,7 +1979,8 @@ def thats_shifr():
 def dict_generator():
     s = '1:men 2:kind 90:number 0:sun 34:book 56:mountain 87:wood 54:car 3:island 88:power 7:box 17:star 101:ice'
 
-    result = {int(k): v for k, v in [l.split(':') for l in s.split()]}
+    result = {int(k): v for k, v in [line.split(':') for line in s.split()]}
+    print(result)
 
 
 # dict_generator()
@@ -2042,7 +2048,7 @@ def gen_list():
 # gen_list()
 def bingo_game():
     matrix = []
-    was_dict = {0}
+
     for i in random.sample(range(1, 76), k=25):
         matrix.append(i)
 
@@ -2055,7 +2061,6 @@ def bingo_game():
 
 
 # bingo_game()
-import random
 
 
 def secret_santa():
@@ -2188,23 +2193,16 @@ def internet_shop():
 
 # internet_shop()
 
-from string import *
-import random
-
 
 def generate_password():
-    LETTER = ''.join((set(ascii_letters) | set(digits)) - set('lI1oO0'))
+    letter = ''.join((set(ascii_letters) | set(digits)) - set('lI1oO0'))
     n, m = int(input()), int(input())
     for _ in range(n):
-        password = ''.join(random.choices(LETTER, k=m))
+        password = ''.join(random.choices(letter, k=m))
         print(password)
 
 
 # generate_password()
-from string import *
-import random
-
-
 def generate_hard_password():
     letter_dict = {'EN': {x for x in ascii_uppercase if x not in 'OI'},
                    'en': {x for x in ascii_lowercase if x not in 'ol'},
@@ -2224,8 +2222,6 @@ def generate_hard_password():
 
 # generate_hard_password()
 
-import random
-
 
 def method_monte_carlo(n=10):
     # n = 100000
@@ -2243,8 +2239,6 @@ def method_monte_carlo(n=10):
 
 # method_monte_carlo(50000000)
 
-import random
-
 
 def method_monte_carlo_2():
     n = 10 ** 6  # количество испытаний
@@ -2261,10 +2255,6 @@ def method_monte_carlo_2():
 
 
 # method_monte_carlo_2()
-
-
-import random
-
 
 def method_monte_carlo_for_pi():
     n = 10 ** 6  # количество испытаний
@@ -2285,18 +2275,18 @@ def method_monte_carlo_for_pi():
 
 
 # method_monte_carlo_for_pi()
-from decimal import *
 
 
 def func_decimal():
     s = list(map(Decimal,
-                 '9.73 8.84 8.92 9.60 9.32 8.97 8.53 1.26 6.62 9.85 1.85 1.80 0.83 6.75 9.74 9.11 9.14 5.03 5.03 1.34 3.52 8.09 7.89 8.24 8.23 5.22 0.30 2.59 1.25 6.24 2.14 7.54 5.72 2.75 2.32 2.69 9.32 8.11 4.53 0.80 0.08 9.36 5.22 4.08 3.86 5.56 1.43 8.36 6.29 5.13'.split()))
+                 '9.73 8.84 8.92 9.60 9.32 8.97 8.53 1.26 6.62 9.85 1.85 1.80 0.83 6.75 9.74 9.11 9.14 5.03 5.03 1.34 '
+                 '3.52 8.09 7.89 8.24 8.23 5.22 0.30 2.59 1.25 6.24 2.14 7.54 5.72 2.75 2.32 2.69 9.32 8.11 4.53 0.80 '
+                 '0.08 9.36 5.22 4.08 3.86 5.56 1.43 8.36 6.29 5.13'.split()))
     print(sum(s))
     print(*map(str, sorted(s)[-5:][::-1]))
 
 
 # func_decimal()
-from decimal import *
 
 
 def func_decimal_2():
@@ -2309,8 +2299,6 @@ def func_decimal_2():
 
 
 # func_decimal_2()
-from decimal import *
-
 
 def result_of_formula():
     d = Decimal(input())
@@ -2319,8 +2307,6 @@ def result_of_formula():
 
 
 # result_of_formula()
-
-from fractions import Fraction
 
 
 def func_fractions():
@@ -2333,19 +2319,19 @@ def func_fractions():
 
 
 # func_fractions()
-from fractions import Fraction
 
 
 def func_fractions_2():
     s = list(map(Fraction,
-                 '0.78 4.3 9.6 3.88 7.08 5.88 0.23 4.65 2.79 0.90 4.23 2.15 3.24 8.57 0.10 8.57 1.49 5.64 3.63 8.36 1.56 6.67 ' \
-                 '1.46 5.26 4.83 7.13 1.22 1.02 7.82 9.97 5.40 9.79 9.82 2.78 2.96 0.07 1.72 7.24 7.84 9.23 1.71 6.24 5.78 ' \
+                 '0.78 4.3 9.6 3.88 7.08 5.88 0.23 4.65 2.79 0.90 4.23 2.15 3.24 8.57 0.10 8.57 1.49 5.64 3.63 8.36 '
+                 '1.56 6.67 ' \ 
+                 '1.46 5.26 4.83 7.13 1.22 1.02 7.82 9.97 5.40 9.79 9.82 2.78 2.96 0.07 1.72 7.24 7.84 9.23 1.71 6.24 '
+                 '5.78 ' \ 
                  '5.37 0.03 9.60 8.86 2.73 5.83 6.50 0.123 0.00021'.split()))
     print(min(s) + max(s))
 
 
 # func_fractions_2()
-from fractions import Fraction
 
 
 def func_fractions_3():
@@ -2354,7 +2340,6 @@ def func_fractions_3():
 
 
 # func_fractions_3()
-from fractions import Fraction
 
 
 def func_fractions_4():
@@ -2369,7 +2354,6 @@ def func_fractions_4():
 
 
 # func_fractions_4()
-from fractions import Fraction
 
 
 def func_fractions_5():
@@ -2381,38 +2365,28 @@ def func_fractions_5():
 
 
 # func_fractions_5()
-from fractions import Fraction
-from math import factorial
-
-
 def func_fractions_6():
     n = int(input())
-    print(sum([Fraction(1, factorial(i)) for i in range(1, n + 1)]))
+    print(sum([Fraction(1, math.factorial(i)) for i in range(1, n + 1)]))
 
 
 # func_fractions_6()
-from math import gcd
-from fractions import Fraction
 
 
 def super_fraction():
     n = int(input())
     for i in range(n // 2, 0, -1):
-        if gcd(i, n - i) == 1:
+        if math.gcd(i, n - i) == 1:
             exit(print(Fraction(i, n - i)))
 
 
 # super_fraction()
-from math import gcd
-from fractions import Fraction
-
-
 def super_fraction_2():
     n = int(input())
     i = 1
     res = set()
     while Fraction(i, n) < 1:
-        if gcd(i, n) == 1:
+        if math.gcd(i, n) == 1:
             res.add(Fraction(i, n))
         i += 1
         if i == n:
@@ -2463,10 +2437,10 @@ def matrix(n=1, m=None, value=0):
 # print(matrix(3,4,9))
 def mean(*args):
     # [i for i in args if str(i).isdigit]
-    l = [i for i in args if type(i) is float or type(i) is int]
-    if len(l) == 0:
+    l_1 = [i for i in args if type(i) is float or type(i) is int]
+    if len(l_1) == 0:
         return 0.0
-    return sum(l) / len(l)
+    return sum(l_1) / len(l_1)
 
 
 # print(mean())
@@ -2491,9 +2465,6 @@ def sorting_meth():
 
 
 # sorting_meth()
-import math
-
-
 def double(x):
     return x ** 2
 
