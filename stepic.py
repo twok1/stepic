@@ -2844,4 +2844,324 @@ def less_15_9_7():
         stud.append(any([1 if 5 % int(input().split()[1]) == 0 else 0 for _ in range(int(input()))]))
     print('YES' if all(stud) else 'NO')
 
-less_15_9_7()
+# less_15_9_7()
+def less_16_1_1():
+    def generate_letter(mail, name, date, time, place, teacher='Тимур Гуев', number=17):
+        return f'''To: {mail}
+    Приветствую, {name}!
+    Вам назначен экзамен, который пройдет {date}, в {time}.
+    По адресу: {place}. 
+    Экзамен будет проводить {teacher} в кабинете {number}. 
+    Желаем удачи на экзамене!'''
+
+    print(generate_letter('lara@yandex.ru', 'Лариса', '10 декабря', '12:00', 'Часова 23, корпус 2'))
+    print()
+    print(generate_letter('lara@yandex.ru', 'Лариса', '10 декабря', '12:00',
+                          'Часова 23, корпус 2', 'Василь Ярошевич', 23))
+
+# less_16_1_1()
+def less_16_1_2():
+    def pretty_print(data, side='-', delimiter='|'):
+        main_print = f'{delimiter} {(" " + delimiter + " ").join(map(str, data))} {delimiter}'
+        print(f" {side * (len(main_print) - 2)}")
+        print(main_print)
+        print(f" {side * (len(main_print) - 2)}")
+
+    pretty_print([1, 2, 10, 23, 123, 3000])
+    pretty_print(['abc', 'def', 'ghi', '12345'])
+    pretty_print(['abc', 'def', 'ghi'], side='*')
+    pretty_print(['abc', 'def', 'ghi'], delimiter='#')
+    pretty_print(['abc', 'def', 'ghi'], side='*', delimiter='#')
+
+# less_16_1_2()
+def less_16_3_1():
+    def concat(*args, sep=' '):
+        return sep.join(map(str, args))
+
+    print(concat('hello', 'python', 'and', 'stepik'))
+    print(concat('hello', 'python', 'and', 'stepik', sep='*'))
+    print(concat('hello', 'python', sep='()()()'))
+    print(concat('hello', sep='()'))
+    print(concat(1, 2, 3, 4, 5, 6, 7, 8, 9, sep='$$'))
+
+# less_16_3_1()
+def less_16_3_2():
+    from functools import reduce
+    def product_of_odds(data):
+        result = reduce(lambda c, x: c*x, filter(lambda x: x % 2 == 1, data), 1)
+        return result
+
+    print(product_of_odds([1, 4, 6, 7, 2]))
+
+# less_16_3_2()
+def less_16_3_3():
+    words = 'the world is mine take a look what you have started'.split()
+    print(*map(lambda x: f'"{x}"', words))
+
+def less_16_3_4():
+    numbers = [18, 191, 9009, 5665, 78, 77, 45, 23, 19991, 908, 8976, 6565, 5665, 10, 1000, 908, 909, 232, 45654, 786]
+    print(*filter(lambda x: str(x) != str(x)[::-1], numbers))
+
+# less_16_3_4()
+def less_16_3_5():
+    numbers = [(10, -2, 3, 4), (-13, 56), (1, 9, 2), (-1, -9, -45, 32), (-1, 5, 1), (17, 0, 1), (0, 1), (3,), (39, 12),
+               (11, -23), (10, -100, 21, 32), (3, -8), (1, 1)]
+
+    sorted_numbers = sorted(numbers, key=lambda x: sum(x) / len(x), reverse=True)
+
+    print(sorted_numbers)
+
+# less_16_3_5()
+def less_16_3_6():
+    def mul7(x):
+        return x * 7
+
+    def add2(x, y):
+        return x + y
+
+    def add3(x, y, z):
+        return x + y + z
+
+    def call(func, *num):
+        return func(*num)
+
+    print(call(mul7, 10))
+    print(call(add2, 2, 7))
+    print(call(add3, 10, 30, 40))
+    print(call(bool, 0))
+
+
+# less_16_3_6()
+def less_16_3_7():
+    def add3(x):
+        return x + 3
+
+    def mul7(x):
+        return x * 7
+
+    def compose(f, g):
+        h = lambda x: f(g(x))
+        return h
+
+
+    print(compose(mul7, add3)(1))
+    print(compose(add3, mul7)(2))
+    print(compose(mul7, str)(3))
+    print(compose(str, mul7)(5))
+
+# less_16_3_7()
+from operator import *
+def less_16_3_8():
+    def arithmetic_operation(op):
+        com = {'+': add, '-': sub, '*': mul, '/': truediv}
+        if op in com:
+            return com[op]
+
+
+    add = arithmetic_operation('+')
+    div = arithmetic_operation('/')
+    print(add(10, 20))
+    print(div(20, 5))
+
+# less_16_3_8()
+def less_16_3_9():
+    line = input().split()
+    print(*sorted(line, key=lambda x: x.lower()))
+
+# less_16_3_9()
+def less_16_3_10():
+    words = sorted([input() for _ in range(int(input()))])
+    words = sorted(words, key=lambda x: sum([ord(i) - ord('A') for i in x.upper()]))
+    print(*words, sep='\n')
+
+# less_16_3_10()
+def less_16_3_11():
+    ips = [input() for _ in range(int(input()))]
+    ips = sorted(ips, key=lambda x: int(x.split('.')[0]) * 256**3 + int(x.split('.')[1]) * 256**2 + int(x.split('.')[2]) * 256 + int(x.split('.')[3]))
+    print(*ips, sep='\n')
+
+# less_16_3_11()
+def less_17_3_5():
+    with open('python.txt') as f:
+        nums = []
+        number = ''
+        for sym in f.read():
+            if sym.isdigit():
+                number += sym
+            elif number:
+                nums.append(int(number))
+                number = ''
+        if number:
+            nums.append(int(number))
+    print(sum(nums))
+    '''V.2'''
+    with open('python.txt', encoding='utf-8') as f:
+        nums = ''.join([c if c.isdigit() else ' ' for c in f.read()])
+        print(sum(map(int, nums.split())))
+
+# less_17_3_5()
+def less_17_3_6():
+    print('Input file contains:')
+    with open('python.txt', encoding='utf-8') as f:
+        print(sum([1 if i.isalpha() else 0 for i in f.read()]), 'letters')
+        f.seek(0)
+        print(len(f.read().split()), 'words')
+        f.seek(0)
+        print(len(f.readlines()), 'lines')
+
+# less_17_3_6()
+def less_17_3_7():
+    import random
+    with open('python.txt') as names_file, open('transliteration.txt') as last_file:
+        name_list, last_list = names_file.readlines(), last_file.readlines()
+        for _ in range(3):
+            print(random.choice(name_list).strip(), random.choice(last_list).strip())
+
+# less_17_3_7()
+def less_17_3_8():
+    with open('python.txt', encoding='utf-8') as f:
+        countries = f.readlines()
+        print(*map(lambda x: x.split('\t')[0], filter(lambda x: x.split('\t')[0].startswith('G') and int(x.split('\t')[1]) > 500_000, map(str.strip, countries))), sep='\n')
+    print('''V.2''')
+    with open('python.txt', encoding='utf-8') as f:
+        for line in f.readlines():
+            c, p = line.split('\t')
+            if int(p) > 500_000 and c.startswith('G'):
+                print(c)
+
+# less_17_3_8()
+def less_17_3_9():
+    def read_csv():
+        with open('python.txt', encoding='utf-8') as f:
+            our_dict = []
+            keys = f.readline().strip().split(',')
+            for line in f.readlines():
+                our_dict.append(dict(zip(keys, line.strip().split(','))))
+        return our_dict
+    # print(keys)
+
+
+# less_17_3_9()
+def less_17_4_3():
+    with open('python.txt') as rf, open('transliteration.txt', 'w') as wf:
+        for n, line in enumerate(rf):
+            print(f'{n+1})', line.strip(), file=wf)
+
+def less_17_4_4():
+    with open('python.txt') as rf, open('transliteration.txt', 'w') as wf:
+        for line in rf:
+            print(line.split()[0], 100 if int(line.strip().split()[1])+5 > 100 else int(line.strip().split()[1])+5, file=wf)
+    '''v.2'''
+    with open('python.txt') as rf, open('transliteration.txt', 'w') as wf:
+        for line in rf:
+            name, score = line.strip().split()
+            wf.write(f'{name} {min(int(score) + 5, 100)}\n')
+
+# less_17_4_4()
+def less_17_4_5():
+    with open('python.txt') as f:
+        all_goats = {}
+        goats = f.read().split('GOATS')[1].split('\n')
+        for goat in goats:
+            if goat:
+                all_goats[goat] = all_goats.get(goat, 0) + 1
+    with open('transliteration.txt', 'w') as wf:
+        for k, v in sorted(all_goats.items()):
+            if v / sum(all_goats.values()) > 0.07:
+                print(k, file=wf)
+
+
+# less_17_4_5()
+def less_17_4_6():
+    with open('python.txt', 'r', encoding='utf-8') as rf, open('transliteration.txt', 'w') as wf:
+        ppp = [line.strip().split(', ') for line in rf.readlines()]
+        ppp = list(filter(lambda x: int(x[2][:2]) * 60 + int(x[2][3:]) - int(x[1][:2]) * 60 - int(x[1][3:]) >= 60, ppp))
+        print(*[i[0] for i in ppp], sep='\n')
+
+
+
+
+# less_17_4_6()
+def less_17_4_7():
+    with open('python.txt') as f:
+        print(f"${sum(map(lambda x: int(x[1:].strip()), f.readlines()))}")
+
+# less_17_4_7()
+def less_18_1_3():
+    with open('python.txt', encoding='utf-8') as f:
+        print(len(list(filter(lambda x: all([int(x.split()[1].strip()) >= 65,
+                                             int(x.split()[2].strip()) >= 65,
+                                             int(x.split()[3].strip()) >= 65]),
+                              f.readlines()))))
+
+# less_18_1_3()
+def less_18_1_4():
+    words = []
+    max_len = 0
+    with open('python.txt') as f:
+        for word in f.read().replace('\n', ' ').split(' '):
+            if len(word) == max_len:
+                words.append(word)
+            elif len(word) > max_len:
+                max_len = len(word)
+                words = [word]
+    print(*words, sep='\n')
+
+
+# less_18_1_4()
+def less_18_1_5():
+    with open('python.txt') as f:
+        print(*map(str.strip, f.readlines()[-10:]), sep='\n')
+
+# less_18_1_5()
+def less_18_1_6():
+    with open('python.txt', encoding='utf-8') as ban_file, open('transliteration.txt') as rf:
+        forbidden = ban_file.read().strip().split()
+        text = rf.read()
+        lower_text = text.lower()
+        for word in forbidden:
+            lower_text = lower_text.replace(word, '*'*len(word))
+        text = list(text)
+    for i in range(len(text)):
+        if lower_text[i] == '*':
+            text[i] = '*'
+    print(''.join(text))
+
+
+# less_18_1_6()
+def less_18_1_7():
+    translate_dict = {
+        'а': 'a', 'к': 'k', 'х': 'h', 'б': 'b', 'л': 'l', 'ц': 'c', 'в': 'v', 'м': 'm', 'ч': 'ch',
+        'г': 'g', 'н': 'n', 'ш': 'sh', 'д': 'd', 'о': 'o', 'щ': 'shh', 'е': 'e', 'п': 'p', 'ъ': '*',
+        'ё': 'jo', 'р': 'r', 'ы': 'y', 'ж': 'zh', 'с': 's', 'ь': "'", 'з': 'z', 'т': 't', 'э': 'je',
+        'и': 'i', 'у': 'u', 'ю': 'ju', 'й': 'j', 'ф': 'f', 'я': 'ya',
+        'А': 'A', 'К': 'K', 'Х': 'H', 'Б': 'B', 'Л': 'L', 'Ц': 'C', 'В': 'V', 'М': 'M', 'Ч': 'Ch',
+        'Г': 'G', 'Н': 'N', 'Ш': 'Sh', 'Д': 'D', 'О': 'O', 'Щ': 'Shh', 'Е': 'E', 'П': 'P', 'Ъ': '*',
+        'Ё': 'Jo', 'Р': 'R', 'Ы': 'Y', 'Ж': 'Zh', 'С': 'S', 'Ь': "'", 'З': 'Z', 'Т': 'T', 'Э': 'Je',
+        'И': 'I', 'У': 'U', 'Ю': 'Ju', 'Й': 'J', 'Ф': 'F', 'Я': 'Ya',
+    }
+    with open('python.txt', encoding='utf-8') as rf, open('transliteration.txt', 'w', encoding='utf-8') as wf:
+        text = rf.read()
+        for cyr, lat in translate_dict.items():
+            text = text.replace(cyr, lat)
+        wf.write(text)
+
+# less_18_1_7()
+def less_18_1_8():
+    with open('python.txt', encoding='utf-8') as rf:
+        have_comm = False
+        uncomm_funcs = []
+        for line in rf.readlines():
+            if line[:4] == 'def ' and not have_comm:
+                uncomm_funcs.append(line[4:line.find('(')])
+            if line[0] == '#':
+                have_comm = True
+            else:
+                have_comm = False
+    if len(uncomm_funcs):
+        print(*uncomm_funcs, sep='\n')
+    else:
+        print('Best Programming Team')
+
+
+less_18_1_8()
