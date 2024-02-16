@@ -3276,9 +3276,12 @@ def pr_6_8_6():
     data.__dict__['min_value'] = min_value
 
 
+<<<<<<< HEAD
 # from termcolor import colored
 
 # print(colored('hello', 'red', attrs=['blink']))
 
 x = input('xxx')
 print(x)
+=======
+>>>>>>> 2d3175c04a60a1a4be6e929f46dfd69962bcb52f
