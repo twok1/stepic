@@ -3164,4 +3164,115 @@ def less_18_1_8():
         print('Best Programming Team')
 
 
-less_18_1_8()
+from collections import defaultdict
+
+def best_sender(messages, senders):
+    s = defaultdict(int)
+    for i in range(len(senders)):
+        s[senders[i]] += len(messages[i].split())
+        # print(s)
+    return sorted(s, key=lambda x: s[x])[-1]
+    # return senders[max_sender]
+
+# messages = ['Hello userTwooo', 'Hi userThree', 'Wonderful day Alice', 'Nice day userThree']
+# senders = ['Alice', 'userTwo', 'userThree', 'Alice']
+
+# print(best_sender(messages, senders))
+
+def pr_6_7_4():
+    from collections import Counter
+    products = Counter('лимон,лимон,лимон,груша,банан,банан,киви,киви,киви,киви'.split(','))
+    max_len = max([len(i) for i in products])
+    for product in sorted(products):
+        price = sum([ord(i) for i in product if i != ' '])
+        print(f"{product.ljust(max_len)}: {price} UC x {products[product]} = {price * products[product]} UC")
+
+
+# pr_6_7_4()
+
+# def pr_6_7_5():
+#     s = 'fsa'
+#     s.isletter()
+
+import pysnooper
+import time
+
+# @pysnooper.snoop()
+def ege_num_2():
+    file_address = 'b.txt'
+    f = open(file_address, 'r')
+    k = int(f.readline())
+    n = int(f.readline())
+    nums = [int(x) for x in f.readlines()]
+    mx_left = mx = 0
+    for i in range(k, n - k):
+        # переопределяем максимум
+        # в начале последовательности
+        mx_left = max(nums[:i-k+1]) 
+        # переопеделяем максимум если надо
+        mx = max(mx, max(nums[i + k:]) + mx_left + nums[i])
+        # time.sleep(5)
+
+    print(f"Максимальная сумма равна {mx}")
+
+# ege_num_2()
+    
+def ege_num_2_ver_2():
+    f = open('a.txt')
+    k = int(f.readline())
+    n = int(f.readline())
+    nums = [int(x) for x in f.readlines()]
+    mx_left = mx = 0
+    for i in range(k, n):
+        # переопределяем максимум
+        # в начале последовательности
+        mx_left = max(mx_left, nums[:i-k])
+        # переопеделяем максимум если надо
+        mx = max(mx, nums[i:] + mx_left)
+    print(mx)
+    
+    
+# ege_num_2()
+# ege_num_2_ver_2()
+
+
+def pr_6_8_4():
+    from collections import Counter
+    letter = Counter('МаЛиНа клубника Арбуз банаН Малина Черешня вишня арбуз клубника банан'.lower().split())
+    maxi = letter.most_common()[0][1]
+    reslt = []
+    for val, nums in letter.items():
+        if nums == maxi:
+            reslt.append(val)
+    print(sorted(reslt)[-1])
+    
+    
+def pr_6_8_5():
+    from collections import Counter
+    inp = """Тимур 100
+Анри 88
+Дима 94
+Артур 82
+Владимир 90""".splitlines()
+    inp = Counter({i.split()[0]: int(i.split()[1]) for i in inp})
+    print(inp.most_common()[-2][0])
+
+
+
+# pr_6_8_5()
+
+def pr_6_8_6():
+    from collections import Counter
+
+    def max_value():
+        return tuple((k, v) for k, v in data.most_common() if v == max(data.values()))
+
+    def min_value():
+        return tuple((k, v) for k, v in data.most_common() if v == min(data.values()))
+
+
+    data = Counter('aksjaskfjsklfjdslkfjajfopewtoieqpwdpqworiiqjskanvmcxbmpewrqopkqwlmdzczmxvmvlnjpjqpkqzxvmbowiqeorewi')
+    data.__dict__['max_values'] = max_value
+    data.__dict__['min_value'] = min_value
+
+
